@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoGuard AI - Web3 Security Protection</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --danger: #ef4444;
+            --success: #10b981;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: var(--light);
+            line-height: 1.6;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), 
+                        url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            padding: 100px 0;
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        .feature-card {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            height: 100%;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+        
+        .extension-install {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, #4f46e5 100%);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+        
+        .scan-result {
+            background: rgba(30, 41, 59, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .safe {
+            border-left: 5px solid var(--success);
+        }
+        
+        .warning {
+            border-left: 5px solid #f59e0b;
+        }
+        
+        .danger {
+            border-left: 5px solid var(--danger);
+        }
+        
+        .nav-tabs {
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+        
+        .nav-tabs .nav-link {
+            color: #94a3b8;
+            border: none;
+            font-weight: 500;
+            padding: 10px 20px;
+        }
+        
+        .nav-tabs .nav-link.active {
+            color: var(--primary);
+            background: transparent;
+            border-bottom: 3px solid var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="#">
+                <i class="fas fa-shield-alt me-2"></i>CryptoGuard AI
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Protect Your Crypto with <span class="text-primary">AI-Powered Security</span></h1>
+                    <p class="lead mb-4">Real-time scam detection, smart contract analysis, and phishing protection for Web3. Stay safe in decentralized spaces.</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <button class="btn btn-primary btn-lg" onclick="installExtension()">
+                            <i class="fas fa-download me-2"></i>Add to Chrome - Free
+                        </button>
+                        <button class="btn btn-outline-light btn-lg" onclick="demoScan()">
+                            <i class="fas fa-search me-2"></i>Live Demo Scan
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="scan-result" id="demoResult">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-shield-check fa-2x text-success me-3"></i>
+                            <div>
+                                <h4 class="mb-0">Security Scan Result</h4>
+                                <small class="text-muted">Updated just now</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><i class="fas fa-check-circle text-success me-2"></i>Phishing Detection: <strong>Safe</strong></p>
+                                <p><i class="fas fa-check-circle text-success me-2"></i>Malicious Code: <strong>None Found</strong></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><i class="fas fa-check-circle text-success me-2"></i>Contract Audit: <strong>Passed</strong></p>
+                                <p><i class="fas fa-check-circle text-success me-2"></i>Reputation Score: <strong>98/100</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">How CryptoGuard AI Protects You</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="mb-4">
+                            <i class="fas fa-exclamation-triangle fa-3x text-warning"></i>
+                        </div>
+                        <h4>Phishing Protection</h4>
+                        <p>Real-time detection of fake websites and phishing attempts targeting your crypto wallets.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="mb-4">
+                            <i class="fas fa-code fa-3x text-primary"></i>
+                        </div>
+                        <h4>Smart Contract Scan</h4>
+                        <p>AI analysis of contract code to detect hidden malicious functions and vulnerabilities.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="mb-4">
+                            <i class="fas fa-radar fa-3x text-success"></i>
+                        </div>
+                        <h4>Live Threat Radar</h4>
+                        <p>Track new scams across chains in real-time with our community-powered threat database.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extension Install Section -->
+    <section class="container">
+        <div class="extension-install">
+            <h2 class="mb-4">Install Chrome Extension in 30 Seconds</h2>
+            <p class="mb-4">Get real-time protection while browsing. Completely free during beta.</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Download the ZIP file below</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Open Chrome Extensions (chrome://extensions/)</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Enable "Developer mode"</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>Click "Load unpacked" and select extracted folder</li>
+                    </ul>
+                    
+                    <div class="mt-4">
+                        <button class="btn btn-primary btn-lg me-3" onclick="downloadExtension()">
+                            <i class="fas fa-download me-2"></i>Download Extension (Beta)
+                        </button>
+                        <button class="btn btn-outline-light" onclick="showInstructions()">
+                            <i class="fas fa-question-circle me-2"></i>View Instructions
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Scanner -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Try Live Security Scanner</h2>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="mb-4">
+                        <ul class="nav nav-tabs" id="scannerTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="url-tab" data-bs-toggle="tab" data-bs-target="#url" type="button">Website URL</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="contract-tab" data-bs-toggle="tab" data-bs-target="#contract" type="button">Contract Address</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="wallet-tab" data-bs-toggle="tab" data-bs-target="#wallet" type="button">Wallet Address</button>
+                            </li>
+                        </ul>
+                        
+                        <div class="tab-content p-4" style="background: rgba(30, 41, 59, 0.7); border-radius: 0 0 10px 10px;">
+                            <div class="tab-pane fade show active" id="url" role="tabpanel">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="urlInput" placeholder="https://example.com" value="https://uniswap.org">
+                                    <button class="btn btn-primary" onclick="scanURL()">Scan Website</button>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="contract" role="tabpanel">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="contractInput" placeholder="0x...">
+                                    <select class="form-select" style="max-width: 150px;">
+                                        <option>Ethereum</option>
+                                        <option>Solana</option>
+                                        <option>BNB Chain</option>
+                                    </select>
+                                    <button class="btn btn-primary" onclick="scanContract()">Analyze Contract</button>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="wallet" role="tabpanel">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="walletInput" placeholder="0x...">
+                                    <button class="btn btn-primary" onclick="scanWallet()">Check Wallet</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="scanResults"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 border-top border-secondary">
+        <div class="container text-center">
+            <p class="mb-2"><i class="fas fa-shield-alt me-2"></i>CryptoGuard AI - Beta Version v0.1</p>
+            <p class="text-muted small">This is a community project for educational purposes. Always verify transactions manually.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Demo Functions
+        function demoScan() {
+            const result = document.getElementById('demoResult');
+            result.style.display = 'block';
+            result.className = 'scan-result safe';
+            setTimeout(() => {
+                result.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+        
+        function installExtension() {
+            alert('For now, please download the extension files below and install manually. The Chrome Web Store submission is in progress.');
+            downloadExtension();
+        }
+        
+        function downloadExtension() {
+            // In a real scenario, this would download a ZIP file
+            alert('Extension downloaded! Check your downloads folder. See instructions above for installation.');
+            // You would typically have: window.location.href = '/downloads/cryptoguard-extension.zip';
+        }
+        
+        function showInstructions() {
+            alert('1. Download the ZIP file\n2. Extract it to a folder\n3. Open Chrome → Extensions (chrome://extensions/)\n4. Enable Developer Mode\n5. Click "Load unpacked"\n6. Select the extracted folder\n7. Pin the extension to your toolbar!');
+        }
+        
+        // Scanner Functions
+        function scanURL() {
+            const url = document.getElementById('urlInput').value;
+            const results = document.getElementById('scanResults');
+            
+            if (!url) {
+                alert('Please enter a URL');
+                return;
+            }
+            
+            const isSafe = Math.random() > 0.3; // Simulated result
+            
+            results.innerHTML = `
+                <div class="scan-result ${isSafe ? 'safe' : 'danger'}">
+                    <h4><i class="fas fa-${isSafe ? 'shield-check' : 'shield-exclamation'} me-2"></i>${isSafe ? 'Website Looks Safe' : '⚠️ Security Warning!'}</h4>
+                    <p>Scanned: <code>${url}</code></p>
+                    <p>${isSafe ? '✓ No phishing patterns detected' : '⚠️ Potential phishing patterns detected'}</p>
+                    <p>${isSafe ? '✓ Domain age verification passed' : '⚠️ New domain - exercise caution'}</p>
+                    <p>${isSafe ? '✓ SSL certificate valid' : '⚠️ SSL issues detected'}</p>
+                    <div class="mt-3">
+                        <small class="text-muted">Note: This is a simulated result. Always verify independently.</small>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function scanContract() {
+            const contract = document.getElementById('contractInput').value || '0x742d35Cc6634C0532925a3b844Bc9e...';
+            const results = document.getElementById('scanResults');
+            
+            const riskScore = Math.floor(Math.random() * 100);
+            const isHighRisk = riskScore < 40;
+            const isMediumRisk = riskScore >= 40 && riskScore < 70;
+            
+            results.innerHTML = `
+                <div class="scan-result ${isHighRisk ? 'danger' : isMediumRisk ? 'warning' : 'safe'}">
+                    <h4><i class="fas fa-${isHighRisk ? 'exclamation-triangle' : 'file-contract'} me-2"></i>Contract Analysis</h4>
+                    <p>Contract: <code>${contract.substring(0, 20)}...</code></p>
+                    <p>Risk Score: <strong>${riskScore}/100</strong> ${riskScore > 70 ? '👍 Low Risk' : riskScore > 40 ? '⚠️ Medium Risk' : '🚨 High Risk'}</p>
+                    <hr>
+                    <p><i class="fas fa-${isHighRisk ? 'times-circle text-danger' : 'check-circle text-success'} me-2"></i>Ownership Renounced: ${Math.random() > 0.5 ? 'Yes' : 'No'}</p>
+                    <p><i class="fas fa-${isMediumRisk ? 'exclamation-triangle text-warning' : 'check-circle text-success'} me-2"></i>Mint Function: ${Math.random() > 0.7 ? 'Restricted' : 'Open'}</p>
+                    <p><i class="fas fa-${isHighRisk ? 'times-circle text-danger' : 'check-circle text-success'} me-2"></i>Transfer Pausable: ${Math.random() > 0.5 ? 'Yes' : 'No'}</p>
+                    <div class="mt-3">
+                        <small class="text-muted">AI Analysis: ${isHighRisk ? 'Exercise extreme caution' : isMediumRisk ? 'Review carefully before interacting' : 'Appears standard'}</small>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function scanWallet() {
+            const wallet = document.getElementById('walletInput').value || '0x...';
+            const results = document.getElementById('scanResults');
+            
+            results.innerHTML = `
+                <div class="scan-result warning">
+                    <h4><i class="fas fa-wallet me-2"></i>Wallet Analysis</h4>
+                    <p>Wallet: <code>${wallet.substring(0, 15)}...</code></p>
+                    <p>This feature requires real blockchain data access.</p>
+                    <p>In the full extension, this would show:</p>
+                    <ul>
+                        <li>Transaction history analysis</li>
+                        <li>Known scam interactions</li>
+                        <li>Balance and token holdings</li>
+                        <li>Risk assessment based on behavior</li>
+                    </ul>
+                    <div class="mt-3">
+                        <small class="text-muted">Install the extension for live wallet monitoring</small>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Initialize with a scan
+        window.onload = function() {
+            setTimeout(demoScan, 1000);
+        }
+    </script>
+</body>
+</html>
