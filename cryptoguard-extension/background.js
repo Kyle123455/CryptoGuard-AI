@@ -86,4 +86,32 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo.status === 'loading' && tab.url) {
         chrome.storage.local.get(['phishingProtection'], function(result) {
             if (result.phishingProtection !== false) {
-                const check
+                const check = checkURL(tab.url);
+                if (check.isThreat) {
+                    chrome.tabs.sendMessage(tabId, {
+                        action: "showWarning",
+                        threatInfo: check
+                    }).catch(() => {
+                        // Content script not ready
+                    });
+                }
+            }
+        });
+    }
+});
+
+// Alarm for updating data
+chrome.alarms.onAlarm.addListener((alarm) => {
+    if (alarm.name === 'updateThreatData') {
+        loadThreatData();
+    }
+});
+
+// Message listener
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "checkURL") {
+        const result = checkURL(request.url);
+        sendResponse(result);
+    }
+    return true;
+});
